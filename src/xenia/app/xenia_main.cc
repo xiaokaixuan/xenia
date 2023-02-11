@@ -97,9 +97,9 @@ DEFINE_path(
     "Storage");
 
 DEFINE_bool(mount_scratch, false, "Enable scratch mount", "Storage");
-DEFINE_bool(mount_cache, true, "Enable cache mount", "Storage");
+DEFINE_bool(mount_cache, false, "Enable cache mount", "Storage");
 
-DEFINE_transient_path(target, 
+DEFINE_transient_path(target,
                       "",
                       "Specifies the target .xex or .iso to execute.",
                       "General");
@@ -516,9 +516,11 @@ void EmulatorApp::EmulatorThread() {
   app_context().CallInUIThread(
       [this]() { emulator_window_->SetupGraphicsSystemPresenterPainting(); });
 
+  std::string userFolder = filesystem::GetExecutableFolder().string() + "\\";
+
   if (cvars::mount_scratch) {
     auto scratch_device = std::make_unique<xe::vfs::HostPathDevice>(
-        "\\SCRATCH", "scratch", false);
+        "\\SCRATCH", userFolder + "scratch", false);
     if (!scratch_device->Initialize()) {
       XELOGE("Unable to scan scratch path");
     } else {
@@ -532,8 +534,8 @@ void EmulatorApp::EmulatorThread() {
   }
 
   if (cvars::mount_cache) {
-    auto cache0_device =
-        std::make_unique<xe::vfs::HostPathDevice>("\\CACHE0", "cache0", false);
+    auto cache0_device = std::make_unique<xe::vfs::HostPathDevice>(
+        "\\CACHE0", userFolder + "cache0", false);
     if (!cache0_device->Initialize()) {
       XELOGE("Unable to scan cache0 path");
     } else {
@@ -544,8 +546,8 @@ void EmulatorApp::EmulatorThread() {
       }
     }
 
-    auto cache1_device =
-        std::make_unique<xe::vfs::HostPathDevice>("\\CACHE1", "cache1", false);
+    auto cache1_device = std::make_unique<xe::vfs::HostPathDevice>(
+        "\\CACHE1", userFolder + "cache1", false);
     if (!cache1_device->Initialize()) {
       XELOGE("Unable to scan cache1 path");
     } else {
@@ -560,8 +562,8 @@ void EmulatorApp::EmulatorThread() {
     // NOTE: this must be registered _after_ the cache0/cache1 devices, due to
     // substring/start_with logic inside VirtualFileSystem::ResolvePath, else
     // accesses to those devices will go here instead
-    auto cache_device =
-        std::make_unique<xe::vfs::HostPathDevice>("\\CACHE", "cache", false);
+    auto cache_device = std::make_unique<xe::vfs::HostPathDevice>(
+        "\\CACHE", userFolder + "cache", false);
     if (!cache_device->Initialize()) {
       XELOGE("Unable to scan cache path");
     } else {
