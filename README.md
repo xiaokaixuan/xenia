@@ -1,10 +1,8 @@
-<p align="center">
-    <a href="https://github.com/xenia-canary/xenia-canary/tree/canary_experimental/assets/icon">
-        <img height="120px" src="https://raw.githubusercontent.com/xenia-canary/xenia/master/assets/icon/128.png" />
-    </a>
-</p>
+<h1>Xenia Canary UWP - frontend for the Xbox Series</h1>
 
-<h1 align="center">Xenia Canary - Xbox 360 Emulator</h1>
+Xenia Canary UWP is an unofficial fork of Xenia Canary to support UWP and the Xbox platforms. It is not associated with the Xenia developers.
+
+<h1>Original Readme</h1>
 
 Xenia is an experimental emulator for the Xbox 360. For more information, see the
 [Xenia wiki](https://github.com/xenia-canary/xenia-canary/wiki).
