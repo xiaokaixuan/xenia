@@ -113,8 +113,7 @@ void SelectFiles(std::function<void(std::vector<std::string>)> callback) {
 
 bool TestPathPermissions(std::string path) { 
   auto p = path +  "\\text.txt";
-  std::ofstream o(p);
-  bool success = o.good();
+  bool success = std::ofstream(p).good();
   std::remove(p.c_str());
  
   return success;

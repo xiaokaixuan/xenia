@@ -16,6 +16,7 @@
 
 // Microsoft headers after platform_win.h.
 #include <wrl/client.h>
+#include "window_win.h"
 
 namespace xe {
 namespace ui {

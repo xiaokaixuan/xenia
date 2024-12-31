@@ -118,7 +118,8 @@ void RecurseFolderForGames(std::string path) {
             if (file.path().has_parent_path())
               filename = file.path().parent_path().filename().string();
           } else {
-            filename = file.path().stem().string();
+            //filename = file.path().stem().string();
+            continue;
           }
 
           s_games.push_back({file.path().string(), filename});
@@ -136,7 +137,7 @@ void RecurseFolderForGames(std::string path) {
 
           in.seekg(0x412);
 
-          char data[32];
+          char data[33]{0};
           for (int i = 0; i < 32; i++) {
             char c;
             in.read(&c, 2);
@@ -144,6 +145,7 @@ void RecurseFolderForGames(std::string path) {
 
             if (c == 0) break;
           }
+          if (file.path().filename().string().size() < 32) continue;
 
           s_games.push_back({file.path().string(), data});
 

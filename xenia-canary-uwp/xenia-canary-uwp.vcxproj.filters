@@ -55,6 +55,7 @@
     <None Include="packages.config" />
     <None Include="PropertySheet.props" />
     <None Include="xenia-canary-uwp_TemporaryKey.pfx" />
+    <None Include="Kaixuan.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt" />

@@ -83,10 +83,11 @@
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
-    <AppxBundle>Always</AppxBundle>
+    <AppxBundle>Never</AppxBundle>
     <AppxBundlePlatforms>x64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
-    <PackageCertificateKeyFile>xenia-canary-uwp_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>95CD5836177EDD6E319D0454DFBA7C6C27DF98DA</PackageCertificateThumbprint>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetName>xeniacanary</TargetName>
@@ -263,6 +264,7 @@
     <ClCompile Include="XeniaUWP.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Kaixuan.pfx" />
     <None Include="packages.config" />
     <None Include="PropertySheet.props" />
     <None Include="xenia-canary-uwp_TemporaryKey.pfx" />
